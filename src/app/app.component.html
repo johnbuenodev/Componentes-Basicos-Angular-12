@@ -5,7 +5,7 @@
 
 <br>
 <br> 
-<h1>
+<div>
 <!-- [progressValue]="counterProgress" [progressValue] event input no componente filho -->
 <!-- "counterProgress" valor declarado no componente pai passando para componente filho-->
 <app-progress-bar [progressValue]="counterProgress" ></app-progress-bar>
@@ -13,10 +13,18 @@
 <!-- [initial]="totalCountdown" passando valor para o filho -->
 <!-- (onDecrease)="updateProgress($event)" Escutando evento (onDecrease) -->
 <!-- updateProgress($event) passando valor para a função no componente pai -->
-<app-countdown 
-  [initial]="totalCountdown"  onDecrease onComplete
+<app-countdown #countdown
+  [initial]="totalCountdown" 
   (onDecrease)="updateProgress($event)"
   (onComplete)="countdownFinished()"
-  ></app-countdown>
+></app-countdown>
+
+<div class="initialInput">
+  <!-- for="totalCountdown" -->
+  <label>Initial Value: </label>
+  <input id="totalCountdown" type="number" [(ngModel)]="totalCountdown" >
+</div> 
+
 <app-progress-bar-advanced [progressValueAdvanced]="75"></app-progress-bar-advanced>
-</h1>
+<button (click)="countdown.startCountDown(); counterProgress=0;">REENVIAR DADOS</button>
+</div>
